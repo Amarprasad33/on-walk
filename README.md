@@ -1,1 +1,1 @@
-## Nearest commodities search app 
+## Nearest commodities search app
