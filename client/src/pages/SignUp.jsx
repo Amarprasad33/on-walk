@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import signUpImage from '../assets/boy_map.svg'
 import createAccountIcon from '../assets/add-friend.png'
 import { Link } from 'react-router-dom'
@@ -42,16 +42,16 @@ export const SignUp = () => {
         console.log(formData);
     };
     return (
-        <div className='w-auto flex flex-col h-auto sm:flex-row  gap-4 ' style={{
+        <div className='w-auto flex flex-col sm:flex-row  gap-4 h-screen ' style={{
             background: "linear-gradient(to right, #c9d6ff, #e2e2e2)",
         }}>
             <div className='flex w-[100%] sm:w-[55%]'>
-                <img src={signUpImage} className='w-[100%] h-[90%]' />
+                <img src={signUpImage} className='w-[100%] h-[100%]' />
             </div>
             <div className='p-2 flex w-[100%] sm:w-[45%] flex-col'>
                 <div className='flex flex-row gap-4 mt-3 text-sm'>
                     <p className='mt-2 font-normal text-slate-600'>Have an account ?</p>
-                    <Link to='/sign-in'>
+                    <Link to='/signin'>
                         <button className='text-black font-semibold border rounded-lg bg-slate-300 pr-4 pl-4 pb-2 pt-2 text-center hover:opacity-70  hover:scale-105 transition-scale duration-300'>Sign In</button>
                     </Link>
                 </div>
