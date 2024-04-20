@@ -9,7 +9,7 @@ export default function Home() {
               {/* logo */}
               <div className="w-8 h-8 ml-6 bg-blue-700 rounded-full flex items-center justify-center">L</div>
               {/* icon - locaiton */}
-              <div className="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center">Loc</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center"><img src="assets/icons/location.svg" alt="" /></div>
               {/* menu */}
               <div className="flex gap-11">
                   <span className='text-base font-normal hover:border-b-[2px] hover:border-blue-700 transition duration-300 ease-in-out cursor-pointer'>Home</span>
@@ -20,7 +20,7 @@ export default function Home() {
             </div>
   
             {/* search group */}
-            <div className="flex gap-12 ml-auto mr-56">
+            <div className="flex gap-12 ml-auto mr-40 lg:mr-56">
                 <input className='px-3 py-1 outline-none border border-gray-500' type="text" placeholder="What are you looking for?" />
                 <div>Wic</div>
                 <div>Cart</div>

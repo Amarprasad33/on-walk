@@ -1,4 +1,5 @@
 import { Tooltip } from 'react-tooltip';
+import ReactStars from 'react-stars';
 
 export default function ProductCardSmall({
   productName,
@@ -21,15 +22,29 @@ export default function ProductCardSmall({
         </div>
       </div>
 
-        <div className="text-base font-medium max-w-52 whitespace-nowrap text-ellipsis overflow-hidden" data-tooltip-id={productName} data-tooltip-content={productName}>{productName}</div>
+      <div className='flex flex-col gap-1 mt-2'>
+        <div className="text-base font-medium max-w-52 whitespace-nowrap text-ellipsis overflow-hidden" data-tooltip-id={productName} data-tooltip-content={productName}>
+          {productName}
+        </div>
         <Tooltip id={productName}/>
-      <div className='flex flex-row gap-2'>
-        <span className='text-base font-medium text-[#5A73F5]'>${discountedPrice}</span>
-        <span className='text-base font-medium text-[#7F7F7F]'>${actualPrice}</span>
-      </div>
-      <div>
-        <span>{rating}</span>
-        <span>({totalReviews})</span>
+        <div className='flex flex-row gap-2'>
+          <span className='text-base font-medium text-[#5A73F5]'>${discountedPrice}</span>
+          <span className='text-base font-medium text-[#7F7F7F] line-through'>${actualPrice}</span>
+        </div>
+        <div className='flex flex-row gap-2 items-center -mt-2'>
+          <span>
+            <ReactStars 
+              value={rating}
+              count={5}
+              size={24}
+              color1='#BFBFBF'
+              color2='#FFAD33'
+              edit={false}
+            />
+            {/* {rating} */}
+          </span>
+          <span className='text-base font-medium text-[#7F7F7F]'>({totalReviews})</span>
+        </div>
       </div>
     </div>
   )
