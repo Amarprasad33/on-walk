@@ -5,7 +5,7 @@ require("dotenv").config();
 const cors = require("cors");
 const signup = require("./Routes/signup");
 const signin = require("./Routes/signin");
-const getUser = require("./Routes/getUser")
+const getExistUser = require("./Routes/getExistUser")
 
 
 
@@ -20,9 +20,9 @@ app.use(cors());
 
 
 // routes
-app.use("/api/users", signup);
-app.use("/api/auth", signin);
-app.use("/api/getdata", getUser);
+app.use("/api/signup", signup);
+app.use("/api/signin", signin);
+app.use("/api/getexistuser", getExistUser);
 
 
 const port =  8010;
