@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import signUpImage from '/assets/boy_map.svg'
-import createAccountIcon from '../assets/add-friend.png'
+import createAccountIcon from '/assets/add-friend.png'
 import { Link } from 'react-router-dom'
 import { Input } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons'
