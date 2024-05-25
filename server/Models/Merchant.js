@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const passwordComplexity = require("joi-password-complexity");
 
-const userSchema = new mongoose.Schema({
+const merchantSchema = new mongoose.Schema({
 	firstName: { type: String, required: true },
 	lastName: { type: String, required: true },
 	email: { type: String, required: true },
@@ -18,16 +18,16 @@ const userSchema = new mongoose.Schema({
     longitude:{type: String}
 });
 
-userSchema.methods.generateAuthToken = function () {
+merchantSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id }, 'SJKRJKSRTINGDJYFBNEJDKAYJNCTKRGD', {
 		expiresIn: "7d",
 	});
 	return token;
 };
 
-const User = mongoose.model("user", userSchema);
+const Merchant = mongoose.model("merchant", merchantSchema);
 
-const validate = (data) => {
+const validateMerchant = (data) => {
 	const schema = Joi.object({
 		firstName: Joi.string().required().label("First Name"),
 		lastName: Joi.string().required().label("Last Name"),
@@ -45,4 +45,4 @@ const validate = (data) => {
 	return schema.validate(data);
 };
 
-module.exports = { User, validate };
+module.exports = { Merchant, validateMerchant };
