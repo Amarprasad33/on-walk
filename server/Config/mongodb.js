@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
 
-module.exports = () => {
+module.exports = (dbName) => {
     mongoose.set("strictQuery", true);
 
     // Replace <db_username>, <db_password>, and <db_name> with your actual credentials and desired database name
     const uri = 'mongodb+srv://commonuser:D0QrXZkOBKAHWmrq@cluster0.weshkot.mongodb.net/?retryWrites=true&w=majority';
-
-    // Specify your desired database name here
-    const dbName = 'Merchantdb';
 
     mongoose.connect(uri, {  dbName: dbName })
         .then(() => {
