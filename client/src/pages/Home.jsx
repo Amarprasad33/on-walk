@@ -1,52 +1,113 @@
-import GroupHeader from '../components/GroupHeader';
-import Navbar from '../components/Navbar';
-import ProductCardSmall from '../components/ProductCardSmall';
+import React from 'react'
+import NavbarAfterLogin from '../components/NavbarAfterLogin';
+import IntroPart from './BuyersLandingPage/IntroPart'
+import SideNavBar from './BuyersLandingPage/SideNavBar'
+import '../styles/Home.css'
+import GroupHeader from '../components/GroupHeader'
+import ProductCardSmall from '../components/ProductCardSmall'
+import Categories from '../components/Categories'
+import ProductCard from '../components/ProductCard'
+import HightLightedProduct from './BuyersLandingPage/HightLightedProduct'
+import NewArrival from './BuyersLandingPage/NewArrival'
+import Testimonials from './BuyersLandingPage/Testimonials'
+import Footer from '../components/Footer'
+import ShopCard from './BuyersLandingPage/ShopCard'
 
-export default function Home() {
+const Home = () => {
   return (
-    <main className="flex flex-col w-full border-slate-700 pb-40" style={{'border': '1px solid red'}}>
-      <Navbar />
-
-      <section about='First-landing-page' >
-        {/* Side-Menu & Carousel */}
-        <div id='menuCarouselContainer' className='flex flex-row' >
-          <div id='sideMenuContainer' className='flex flex-row gap-7'>
-            <div id='sideMenuContent' className='flex flex-col gap-1 pt-8 pr-5 pb-5 pl-9 w-fit border-r border-[#B3B3B3]'>
-              <span className='flex gap-2'>
-                <span>Women's Fashion</span>
-                <span>cv</span>
-              </span>
-              <span className='flex gap-2'>
-                <span>Men's Fashion</span>
-                <span>cv</span>
-              </span>
-              <span className='flex gap-2'>
-                <span>Electronics</span>
-                <span></span>
-              </span>
-            </div>
-          </div>
-
-          <div id='carouselContainer' className='w-fit flex flex-col gap-3 ml-28' >
-            <div className='font-medium text-5xl'>Choose From the new arrivals</div>
-            <img className='h-80 rounded-xl' src="https://images.unsplash.com/photo-1609702847389-b8aec1b0b929?q=80&w=1926&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width={800} alt="new arrived product" />
-          </div>
+    <>
+      <div id='saleBox'>
+        <NavbarAfterLogin />
+      </div>
+      <div className='home-page-main'>
+        <div className='home-intro-part'>
+          <SideNavBar />
+          <IntroPart />
         </div>
-
-        <div id='saleBox' className='flex flex-col gap-4 pb-8'>
+        <div className='home-flash-sales'>
           <GroupHeader groupTitle="Today's" groupInfoHeader="Discount's upto 40%" sideNavigation={true} actionBtn={false} actionBtnText={''} />
-          <div id='productList'>
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89}  />
+          <div className='productList'>
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
           </div>
-
-          <button className='bg-blue-700 px-8 py-3 rounded-md w-fit text-white self-center'>View All Products</button>
-          <div id="separation" className='border-b border-[#D9D9D9] w-11/12 self-center'></div>
+          <button className='view-all-btn'>View All Products</button>
+          <hr style={{ marginBottom: '1vw' }} />
         </div>
-      </section>
+        <div className='categories'>
+          <GroupHeader groupTitle="Categories" groupInfoHeader="Browse By Category" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+          <div className='categories-list'>
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+            <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+          </div>
+          <hr style={{ marginBottom: '1vw' }} />
+        </div>
+        <div className='most-search-products'>
+          <div className='most-search-products-heading'>
+            <GroupHeader groupTitle="This Month" groupInfoHeader="Most Searched Products" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+            <button className='search-products-view-all-btn'>View All</button>
+          </div>
+          <div className='most-search-products-list'>
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+          </div>
+        </div>
+        <div className='single-product'>
+          <HightLightedProduct content="Enhance Your Music Experience" saleTimeLeft="" productImg="assets/productImg.svg" />
+        </div>
+        <div className='most-shop-searched'>
+          <div className='most-search-products-heading'>
+            <GroupHeader groupTitle="This Month" groupInfoHeader="Most Searched Shops" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+            <button className='search-products-view-all-btn'>View All</button>
+          </div>
+          <div className='most-search-products-list'>
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+            <ShopCard imgUrl={'assets/shop.svg'} productName="Armaf Club De Nuit Eau De Parfum" address="Near nehru  nagar, Bhubaneswar" rating={4} totalReviews={89} />
+          </div>
+        </div>
+        <div className='new-arrival'>
+          <div style={{ marginBottom: '2vw' }}>
+            <GroupHeader groupTitle="Featured" groupInfoHeader="New Arrival" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+          </div>
+          <div className='new-arrival-products'>
+            <NewArrival />
+          </div>
+        </div>
+        <div className='testimonials'>
+          <Testimonials />
+        </div>
+      </div>
+      <Footer />
+    </>
 
-
-
-    </main>
-    
   )
 }
+
+export default Home
