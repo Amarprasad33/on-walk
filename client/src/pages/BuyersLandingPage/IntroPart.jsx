@@ -12,7 +12,7 @@ const IntroPart = () => {
                     <input className='search-input' type="text" placeholder='Store Name' name="" id="" />
                     <SearchOutlined className='search-icon' />
                 </div>
-                <button className='map-btn'>Get Direction</button>
+                <button className='map-btn'>Get Nearby Stores</button>
             </div>
         </div>
     )
