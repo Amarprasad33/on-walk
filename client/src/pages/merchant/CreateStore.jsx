@@ -39,16 +39,11 @@ export default function CreateStore() {
 
     const handleFormSubmit = async () => {
         console.log("formMerchant", formData);
-        let dummy = {
-            firstName: "sahil",
-            lastName: "kumar",
-            email: "sahisdwl@gmail.com",
-            password: "44S@hil44"        };
         // e.preventDefault();
 		try {
-			const url = `https://assumes-outlook-faq-newbie.trycloudflare.com/api/users`;
-			const { data: res } = await axios.post(url, dummy);
-			navigate("/");
+			const url = `${process.env.API_URL}/api/merchant/signup`;
+			const { data: res } = await axios.post(url, formData);
+			navigate("/signin");
 			console.log(res.message);
 		} catch (error) {
 			if (
@@ -58,6 +53,7 @@ export default function CreateStore() {
 			) {
 				setError(error.response.data.message);
 			}
+            console.log('err', error);
 		}
     }
 

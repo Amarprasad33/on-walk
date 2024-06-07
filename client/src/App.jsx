@@ -6,10 +6,10 @@ import { SignIn } from './pages/SignIn';
 import CreateStore from './pages/merchant/CreateStore';
 import MerchantLanding from './pages/merchant/MerchLanding';
 import StoreManager from './pages/merchant/StoreManager';
+import StoreView from './pages/user/StoreView';
 
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
           <Route path='/merch/create' element={<CreateStore />} />
           <Route path='/merch' element={<MerchantLanding />} />
           <Route path='/merch/manage/store' element={<StoreManager />} />
+          <Route path='/user/store/view' element={<StoreView />} />
         </Routes>
       </BrowserRouter>
     </div>
