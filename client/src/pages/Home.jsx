@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarAfterLogin from '../components/NavbarAfterLogin';
 import IntroPart from './BuyersLandingPage/IntroPart'
 import SideNavBar from './BuyersLandingPage/SideNavBar'
@@ -14,15 +14,36 @@ import Footer from '../components/Footer'
 import ShopCard from './BuyersLandingPage/ShopCard'
 
 const Home = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [userLocation, setUserLocation] = useState({});
+  const [directionData, setDirectionData] = useState();
+
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 70) { // Adjust the value as needed
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <>
       <div id='saleBox'>
-        <NavbarAfterLogin />
+        <NavbarAfterLogin scrolled={scrolled} setUserLocation={setUserLocation} />
       </div>
       <div className='home-page-main'>
         <div className='home-intro-part'>
           <SideNavBar />
-          <IntroPart />
+          <IntroPart userLocation={userLocation} directionData={directionData} setDirectionData={setDirectionData} />
         </div>
         <div className='home-flash-sales'>
           <GroupHeader groupTitle="Today's" groupInfoHeader="Discount's upto 40%" sideNavigation={true} actionBtn={false} actionBtnText={''} />

@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import signUpImage from '/assets/boy_map.svg'
 import createAccountIcon from '/assets/add-friend.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons'
 const { TextArea } = Input;
+
 
 
 export const SignUp = () => {
@@ -37,9 +38,26 @@ export const SignUp = () => {
         }
     };
     // console.log(formData);
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+
+        // try {
+		// 	const url = "process.env.api_url/api/users";
+		// 	const { data: res } = await axios.post(url, data);
+		// 	navigate("/student/signin");
+		// 	console.log(res.message);
+		// } catch (error) {
+		// 	if (
+		// 		error.response &&
+		// 		error.response.status >= 400 &&
+		// 		error.response.status <= 500
+		// 	) {
+		// 		setError(error.response.data.message);
+		// 	}
+		// }
+
     };
     return (
         <div className='w-auto flex flex-col sm:flex-row  gap-4 h-screen ' style={{
