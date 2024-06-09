@@ -1,4 +1,45 @@
+import axios from "axios";
+import { useEffect } from "react"
+
 export default function StoreManager() {
+
+  /* 
+    `https://assumes-outlook-faq-newbie.trycloudflare.com/api/getmerchant`
+    const getUser = async ()=>{
+        try {
+          const token = localStorage.getItem("token");
+          const url = "http://localhost:8080/api/getdata";
+          const { data: res } = await axios.post(url, {token:token});
+          setUserName(res.firstname+" "+res.lastname);
+          setShow(true);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      const handleLogout = () => {
+        localStorage.removeItem("token");
+        window.location.reload();
+      };
+  */
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const url = `${process.env.API_URL}/api/getmerchant`;
+        const res = await axios.post(url, {token:token});
+        console.log('res', res);
+        // setUserName(res.firstname+" "+res.lastname);
+        // setShow(true);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getUser();
+  }, [])
+
   return (
     <div id="store-manager-page" className="relative w-full h-screen">
           
