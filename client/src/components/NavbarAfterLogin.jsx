@@ -12,7 +12,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FoaWxrcnJhaiIsImEiOiJjbHYzbjgyemQwcmtmMmpwOHd0OTg5eW9sIn0.Dtuo5qqHCxv_01nK7YHVkg';
 
 
-const NavbarAfterLogin = () => {
+const NavbarAfterLogin = ({ scrolled, setUserLocation }) => {
     const [isModalOpened, setIsModalOpened] = useState(false);
     // const [storeLocations, setStoreLocations] = useState(
     //     JSON.parse(localStorage.getItem('storeLocations')) || []
@@ -20,6 +20,8 @@ const NavbarAfterLogin = () => {
     const [yourLoc, setYourLoc] = useState({});
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
+
+    const navStyle = scrolled ? {'position': 'fixed', 'backgroundColor': '#fff' } : {'position': 'relative' }
 
     useEffect(() => {
         const map = new mapboxgl.Map({
@@ -52,7 +54,13 @@ const NavbarAfterLogin = () => {
                     longitude: parseFloat(longitude),
                     latitude: parseFloat(latitude)
                 }
+                const youAsdata = {
+                    shopName: 'you',
+                    longitude: parseFloat(longitude),
+                    latitude: parseFloat(latitude)
+                }
                 setYourLoc(loc);
+                setUserLocation(youAsdata);
             //   setStoreLocations([...storeLocations, store]);
             //     localStorage.setItem('yourLocation', JSON.stringify([...storeLocations, store]));
             },
@@ -112,11 +120,11 @@ const NavbarAfterLogin = () => {
 
     return (
         <>
-            <div className='navbar-main'>
+            <div className='navbar-main z-10' style={navStyle}>
                 <div className='user-profile-pic'>
                     <img src={DefaultIcon} />
                 </div>
-                <img className='navbar-location-icon' src="assets/icons/location.svg" onClick={() =>{
+                <img className='navbar-location-icon' src="/assets/icons/location.svg" onClick={() =>{
                     console.log("clckeed", isModalOpened)
                     setIsModalOpened(true);
                     // console.log("clckeed", isModalOpened)
@@ -130,6 +138,7 @@ const NavbarAfterLogin = () => {
                             <div  ref={mapContainerRef} className="map h-[15rem]" />
                         </div>
                         <button className="btn text-white bg-blue-500 mx-auto" onClick={locateOnMap}>Get my current location</button>
+                        {(yourLoc.longitude && yourLoc.latitude) && <div className='text-center'>We got your location! Thank you.</div>}
                     </div>
 
                     <button className="btn btn-danger ml-auto" onClick={() => setIsModalOpened(false)}>Close</button>
@@ -145,8 +154,8 @@ const NavbarAfterLogin = () => {
                     <SearchOutlined className='search-icon' />
                 </div>
                 <div className='more-options'>
-                    <img src='assets/icons/wishlist.svg' />
-                    <img src='assets/icons/cart.svg' />
+                    <img src='/assets/icons/wishlist.svg' />
+                    <img src='/assets/icons/cart.svg' />
                 </div>
             </div>
             <hr />

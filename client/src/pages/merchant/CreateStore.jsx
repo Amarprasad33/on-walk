@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Navbar from "../../components/Navbar";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import NavbarAfterLogin from "../../components/NavbarAfterLogin";
 
 
 export default function CreateStore() {
@@ -59,7 +59,7 @@ export default function CreateStore() {
 
   return (
     <main className="flex flex-col w-full border-slate-700 pb-40">
-        <Navbar />
+        <NavbarAfterLogin />
         <div aria-label="page-container" className="flex flex-col items-center mt-12">
             <div aria-label="form-container" className="flex flex-col">
                 <div className="font-medium text-4xl text-[#3958FA]">Enter your details</div>
