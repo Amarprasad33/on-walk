@@ -10,6 +10,7 @@ import StoreView from './pages/user/StoreView';
 import Directions from './pages/user/Directions';
 import ItemDetail from './pages/merchant/ItemDetail';
 import Confirmation from './pages/merchant/Confirmation';
+import ItemManager from './pages/merchant/ItemManager';
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
           <Route path='/merch' element={<MerchantLanding />} />
           <Route path='/merch/confirm' element={<Confirmation />} />
           <Route path='/merch/manage/' element={<StoreManager />} />
-          <Route path='/merch/manage/store' element={<StoreManager />} />
+          <Route path='/merch/manage/items' element={<ItemManager />} />
           <Route path='/merch/additem' element={<ItemDetail />} />
           <Route path='/user/store/view' element={<StoreView />} />
           <Route path='/user/directions' element={<Directions />} />
