@@ -62,7 +62,7 @@ export default function CreateStore() {
         <NavbarAfterLogin />
         <div aria-label="page-container" className="flex flex-col items-center mt-12">
             <div aria-label="form-container" className="flex flex-col">
-                <div className="font-medium text-4xl text-[#3958FA]">Enter your details</div>
+                <div className="font-medium text-4xl text-[#3958FA]">Enter your details to register your store</div>
 
                 <div aria-label="form-content" className="mt-5 flex flex-col gap-3">
                     <div className="input-group flex flex-col gap-2">

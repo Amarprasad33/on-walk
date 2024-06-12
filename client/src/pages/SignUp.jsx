@@ -15,15 +15,15 @@ export const SignUp = () => {
         email: "",
         password: "",
         address: [],
-        role: "buyer",
+        // role: "buyer",
     });
     const handleChange = (e) => {
-        if (e.target.id === "seller" || e.target.id === "buyer") {
-            setFromData({
-                ...formData,
-                role: e.target.id,
-            });
-        }
+        // if (e.target.id === "seller" || e.target.id === "buyer") {
+        //     setFromData({
+        //         ...formData,
+        //         role: e.target.id,
+        //     });
+        // }
         if (e.target.id === "address") {
             setFromData({
                 ...formData,
@@ -116,7 +116,7 @@ export const SignUp = () => {
                         <label className='text-slate-600 w-[15%] mt-2'>Address : </label>
                         <TextArea placeholder="Address" className="border w-[85%] rounded-lg p-2 outline-none " id="address" onChange={handleChange} />
                     </div>
-                    <div className='flex flex-row gap-2'>
+                    {/* <div className='flex flex-row gap-2'>
                         <label className='text-slate-600 w-[15%] mt-2'>Role :</label>
                         <div className='flex flex-wrap gap-6'>
                             <div className="flex gap-2">
@@ -128,7 +128,7 @@ export const SignUp = () => {
                                 <span className='text-slate-600 mt-1'>Shopper</span>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='flex flex-row gap-4'>
                         <button onClick={handleSubmit} className='border w-[50%] mx-auto rounded-lg mt-5 bg-blue-400 pr-4 pl-4 pb-2 pt-2  hover:opacity-90  hover:scale-105 transition-scale duration-300'>
                             <div className='flex flex-row gap-4 justify-center'>
