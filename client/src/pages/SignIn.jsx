@@ -1,14 +1,18 @@
 import { useState } from 'react'
 import signInImage from '/assets/girl_phone.svg'
 import createAccountIcon from '/assets/add-friend.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons'
+import axios from 'axios';
 
 
 
 
 export const SignIn = () => {
+    
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
     const [formData, setFromData] = useState({
         email: "",
         password: "",
@@ -20,9 +24,24 @@ export const SignIn = () => {
         });
     };
     // console.log(formData);
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
+		try {
+			const url = `${process.env.API_URL}/api/merchant/signin`;
+			const { data: res } = await axios.post(url, formData);
+			localStorage.setItem("token", res.data);
+			window.location = "/student";
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				setError(error.response.data.message);
+			}
+            console.log('err', error)
+		}
     };
     return (
         <div className='w-auto flex flex-col sm:flex-row  gap-4 h-screen' style={{

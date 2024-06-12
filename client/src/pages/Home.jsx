@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavbarAfterLogin from '../components/NavbarAfterLogin';
 import IntroPart from './BuyersLandingPage/IntroPart'
 import SideNavBar from './BuyersLandingPage/SideNavBar'
@@ -12,29 +12,55 @@ import NewArrival from './BuyersLandingPage/NewArrival'
 import Testimonials from './BuyersLandingPage/Testimonials'
 import Footer from '../components/Footer'
 import ShopCard from './BuyersLandingPage/ShopCard'
+// import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [userLocation, setUserLocation] = useState({});
+  const [directionData, setDirectionData] = useState();
+  // const navigate = useNavigate();
+
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 70) { // Adjust the value as needed
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <>
       <div id='saleBox'>
-        <NavbarAfterLogin />
+        <NavbarAfterLogin scrolled={scrolled} setUserLocation={setUserLocation} />
       </div>
       <div className='home-page-main'>
         <div className='home-intro-part'>
           <SideNavBar />
-          <IntroPart />
+          <IntroPart userLocation={userLocation} directionData={directionData} setDirectionData={setDirectionData} />
         </div>
         <div className='home-flash-sales'>
           <GroupHeader groupTitle="Today's" groupInfoHeader="Discount's upto 40%" sideNavigation={true} actionBtn={false} actionBtnText={''} />
           <div className='productList'>
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-            <ProductCardSmall imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <div className='flex flex-col gap-2'>
+              <ProductCardSmall id={23} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <button>Details</button>
+            </div>
+            <ProductCardSmall id={24} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={25} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={26} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={27} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={28} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={29} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+            <ProductCardSmall id={30} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
           </div>
           <button className='view-all-btn'>View All Products</button>
           <hr style={{ marginBottom: '1vw' }} />

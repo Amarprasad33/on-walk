@@ -1,4 +1,7 @@
+import { useState } from "react"
+
 export default function Navbar() {
+
   return (
     <div>
         <nav className="relative flex gap-9 p-1.5 border-b border-[#B3B3B3]">
@@ -6,7 +9,9 @@ export default function Navbar() {
               {/* logo */}
               <div className="w-8 h-8 ml-6 bg-blue-700 rounded-full flex items-center justify-center">L</div>
               {/* icon - locaiton */}
-              <div className="w-8 h-8 rounded-full flex items-center justify-center"><img src="assets/icons/location.svg" alt="" /></div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center">
+                <img src="assets/icons/location.svg" alt=""   />
+              </div>
               {/* menu */}
               <div className="flex gap-11">
                   <span className='text-base font-normal hover:border-b-[2px] hover:border-blue-700 transition duration-300 ease-in-out cursor-pointer'>Home</span>

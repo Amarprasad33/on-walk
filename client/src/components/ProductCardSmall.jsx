@@ -8,12 +8,15 @@ export default function ProductCardSmall({
   actualPrice,
   rating,
   totalReviews,
-  imgUrl
+  imgUrl,
+  id
 
 }) {
+
+  
   return (
-    <div id="container">
-      <div id="productImageContainer" className="w-fit h-fit border relative min-w-52 min-h-48 flex justify-center items-center">
+    <div id={id} onClick={() => console.log("main-container clicked", id)} style={{'zIndex': '-100'}}>
+      <div className="w-fit h-fit border relative min-w-52 min-h-48 flex justify-center items-center">
         <img className="w-40 h-40" src={imgUrl} alt="product image" />
         <div className="absolute top-2 left-2 bg-blue-700 text-white px-3 py-0.5 rounded">-{discountedPercent}%</div>
         <div id="actionIconGrp" className="flex flex-col gap-2 absolute right-2 top-2">
@@ -41,7 +44,6 @@ export default function ProductCardSmall({
               color2='#FFAD33'
               edit={false}
             />
-            {/* {rating} */}
           </span>
           <span className='text-base font-medium text-[#7F7F7F]'>({totalReviews})</span>
         </div>
