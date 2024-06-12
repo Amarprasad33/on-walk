@@ -154,8 +154,8 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation }) => {
                     <SearchOutlined className='search-icon' />
                 </div>
                 <div className='more-options'>
-                    <img src='/assets/icons/wishlist.svg' />
-                    <img src='/assets/icons/cart.svg' />
+                    <img className='cursor-pointer' src='/assets/icons/wishlist.svg' />
+                    <img className='cursor-pointer' src='/assets/icons/cart.svg' />
                 </div>
             </div>
             <hr />
