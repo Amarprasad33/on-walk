@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  productName: {
-    type: String,
-    required: true
-  },
-  productCategory: {
-    type: String,
-    required: true
-  },
-  stores: [{
+  storeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Store'
-  }]
+    required: true
+  },
+  shopname: String,
+  location: {
+    type: { type: String, default: 'Point' },
+    coordinates: [Number],
+  },
 });
+
+productSchema.index({ location: '2dsphere' });
 
 const Product = mongoose.model('Product', productSchema);
 
