@@ -15,8 +15,8 @@ export default function MerchantLanding() {
             <div className="text-2xl w-[50%] mt-12">
               Join our local store discovery app and connect with nearby customers looking for your products!
             </div>
-            <Link to='/merch/manage/store'>        
-                <button className="p-6 px-36 bg-[#2238FF] rounded-md text-slate-100 mt-24">Get Started</button>
+            <Link to='/merch/manage/'>        
+                <button className="p-6 px-36 bg-[#2238FF] rounded-md text-slate-100 mt-24" >Get Started</button>
             </Link>
           </div>
         </div>
