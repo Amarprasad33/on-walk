@@ -3,18 +3,19 @@ import signUpImage from '/assets/boy_map.svg'
 import createAccountIcon from '/assets/add-friend.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
-import { GoogleOutlined } from '@ant-design/icons'
+import axios from 'axios';
 const { TextArea } = Input;
 
 
 
 export const SignUp = () => {
+    const [error, setError] = useState("");
     const [formData, setFromData] = useState({
-        name: "",
+        firstName: "",
+        lastName: "",
         phone: 0,
         email: "",
         password: "",
-        address: [],
         // role: "buyer",
     });
     const handleChange = (e) => {
@@ -24,41 +25,31 @@ export const SignUp = () => {
         //         role: e.target.id,
         //     });
         // }
-        if (e.target.id === "address") {
-            setFromData({
-                ...formData,
-                [e.target.id]: [...formData.address, e.target.value],
-            });
-        }
-        else {
-            setFromData({
-                ...formData,
-                [e.target.id]: e.target.value,
-            });
-        }
+        setFromData({
+            ...formData,
+            [e.target.id]: e.target.value,
+        });
     };
-    // console.log(formData);
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
-
-        // try {
-		// 	const url = "process.env.api_url/api/users";
-		// 	const { data: res } = await axios.post(url, data);
-		// 	navigate("/student/signin");
-		// 	console.log(res.message);
-		// } catch (error) {
-		// 	if (
-		// 		error.response &&
-		// 		error.response.status >= 400 &&
-		// 		error.response.status <= 500
-		// 	) {
-		// 		setError(error.response.data.message);
-		// 	}
-		// }
-
+        try {
+            const url = `${process.env.API_URL}api/consumer/signup`;
+            const { data: res } = await axios.post(url, formData);
+            navigate("/signin");
+            console.log(res.message);
+        } catch (error) {
+            if (error.response && error.response.status >= 400 && error.response.status <= 500
+            ) {
+                setError(error.response.data.message);
+            }
+            console.log('err', error);
+        }
     };
+
+
+
     return (
         <div className='w-auto flex flex-col sm:flex-row  gap-4 h-screen ' style={{
             background: "linear-gradient(to right, #c9d6ff, #e2e2e2)",
@@ -95,51 +86,32 @@ export const SignUp = () => {
                         wordSpacing: '-5px'
                     }}>On Walk</span>
                 </div>
-                <form className='p-6 flex flex-col gap-4' >
+                <form className='p-6 flex flex-col gap-4'>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>User Name : </label>
-                        <input type="text" placeholder="Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="name" onChange={handleChange} />
+                        <label className='text-slate-600 w-[15%] mt-2'>First Name : </label>
+                        <input required={true} type="text" placeholder="First Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="firstName" onChange={handleChange} />
+                    </div>
+                    <div className='flex flex-row gap-2'>
+                        <label className='text-slate-600 w-[15%] mt-2'>Last Name : </label>
+                        <input required type="text" placeholder="Last Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="lastName" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
                         <label className='text-slate-600 w-[15%] mt-2'>Phone no. : </label>
-                        <input type="number" placeholder="Phone no." className="border w-[85%] rounded-lg p-2 outline-none  " id="phone" onChange={handleChange} />
+                        <input required type="number" placeholder="Phone no." className="border w-[85%] rounded-lg p-2 outline-none  " id="phone" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
                         <label className='text-slate-600 w-[15%] mt-2'>Email : </label>
-                        <input type="email" placeholder="Email" className="border w-[85%] rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
+                        <input required type="email" placeholder="Email" className="border w-[85%] rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
                         <label className='text-slate-600 w-[15%] mt-2'>Password : </label>
-                        <Input.Password placeholder="" className="border w-[85%] rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
+                        <Input.Password required placeholder="" className="border w-[85%] rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
                     </div>
-                    <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Address : </label>
-                        <TextArea placeholder="Address" className="border w-[85%] rounded-lg p-2 outline-none " id="address" onChange={handleChange} />
-                    </div>
-                    {/* <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Role :</label>
-                        <div className='flex flex-wrap gap-6'>
-                            <div className="flex gap-2">
-                                <input type="checkbox" id="buyer" className="w-5" onChange={handleChange} checked={formData.role === "buyer"} />
-                                <span className='text-slate-600 mt-1'>Customer</span>
-                            </div>
-                            <div className="flex gap-2">
-                                <input type="checkbox" id="seller" className="w-5 " onChange={handleChange} checked={formData.role === "seller"} />
-                                <span className='text-slate-600 mt-1'>Shopper</span>
-                            </div>
-                        </div>
-                    </div> */}
                     <div className='flex flex-row gap-4'>
                         <button onClick={handleSubmit} className='border w-[50%] mx-auto rounded-lg mt-5 bg-blue-400 pr-4 pl-4 pb-2 pt-2  hover:opacity-90  hover:scale-105 transition-scale duration-300'>
                             <div className='flex flex-row gap-4 justify-center'>
                                 <p className='text-white font-semibold flex items-center'>Create your Account</p>
                                 <img src={createAccountIcon} className='w-8 h-8 ' />
-                            </div>
-                        </button>
-                        <button onClick={handleSubmit} className='border w-[50%] mx-auto rounded-lg mt-5 border-[#60a5fa] bg-white pr-4 pl-4 pb-2 pt-2  hover:opacity-90  hover:scale-105 transition-scale duration-300'>
-                            <div className='flex flex-row gap-4 justify-center'>
-                                <p className='text-blue-400 font-semibold flex items-center'>Sign in from Google</p>
-                                <GoogleOutlined style={{ fontSize: '30px', color: '#60a5fa' }} />
                             </div>
                         </button>
                     </div>
