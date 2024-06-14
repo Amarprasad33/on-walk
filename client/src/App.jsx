@@ -12,6 +12,7 @@ import ItemDetail from './pages/merchant/ItemDetail';
 import Confirmation from './pages/merchant/Confirmation';
 import ItemManager from './pages/merchant/ItemManager';
 import ProductView from './pages/user/ProductView';
+import MerchSignIn from './pages/MerchSignIn';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/merch/signin' element={<MerchSignIn />} />
           <Route path='/merch/signup' element={<CreateStore />} />
           <Route path='/merch' element={<MerchantLanding />} />
           <Route path='/merch/confirm' element={<Confirmation />} />
@@ -36,5 +38,5 @@ function App() {
     </div>
   )
 }
-
+// https://ugly-malawi-prot-surveillance.trycloudflare.com
 export default App
