@@ -1,16 +1,12 @@
 import { useState } from 'react'
-import signInImage from '/assets/girl_phone.svg'
+import signInImage from '/assets/merchShopIcon.svg'
 import createAccountIcon from '/assets/add-friend.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
-import { GoogleOutlined } from '@ant-design/icons'
 import axios from 'axios';
-import '../styles/Home.css';
 
 
-
-
-export const SignIn = () => {
+const MerchSignIn = () => {
 
     const navigate = useNavigate();
     const [error, setError] = useState("");
@@ -24,15 +20,14 @@ export const SignIn = () => {
             [e.target.id]: e.target.value,
         });
     };
-    // console.log(formData);
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(formData);
         try {
-            const url = `${process.env.API_URL}/api/consumer/signin`;
+            const url = `${process.env.API_URL}/api/merchant/signin`;
             const { data: res } = await axios.post(url, formData);
             localStorage.setItem("token", res.data);
-            navigate("/");
+            navigate('/merch');
         } catch (error) {
             if (
                 error.response &&
@@ -52,20 +47,11 @@ export const SignIn = () => {
                 <img src={signInImage} className='w-[100%] h-[100%]' />
             </div>
             <div className='relative p-2 flex w-[100%] sm:w-[45%] flex-col justify-center'>
-                <div className='flex flex-row gap-20 mt-3 text-sm fixed top-2'>
-                    <div className='flex fles-row gap-4'>
-                        <p className='mt-2 font-normal text-slate-600'>Don&apos;t have an account ?</p>
-                        <Link to='/signup'>
-                            <button className='text-black font-semibold border border-[#1e2222] rounded-lg bg-inherit pr-4 pl-4 pb-2 pt-2 text-center hover:opacity-70  hover:scale-105 transition-scale duration-300'>Sign Up</button>
-                        </Link>
-                    </div>
-                    <div className='flex flex-row gap-4'>
-                        <p className='mt-2 font-normal text-slate-600'>Don&apos;t have an merchant account ?</p>
-                        <Link to='/merch/signin'>
-                            <button className='text-black font-semibold border border-[#1e2222] rounded-lg bg-inherit pr-4 pl-4 pb-2 pt-2 text-center hover:opacity-70  hover:scale-105 transition-scale duration-300'>Sign In</button>
-                        </Link>
-
-                    </div>
+                <div className='flex flex-row gap-4 mt-3 text-sm fixed top-2'>
+                    <p className='mt-2 font-normal text-slate-600'>Don&apos;t have an account ?</p>
+                    <Link to='/merch/signup'>
+                        <button className='text-black font-semibold border border-[#1e2222] rounded-lg bg-inherit pr-4 pl-4 pb-2 pt-2 text-center hover:opacity-70  hover:scale-105 transition-scale duration-300'>Sign Up</button>
+                    </Link>
                 </div>
                 <div className='flex flex-col'>
                     <div className='mt-10 flex flex-row mx-auto gap-4'>
@@ -93,12 +79,12 @@ export const SignIn = () => {
                     <form className='p-6 flex flex-col gap-4' >
 
                         <div className='flex flex-row gap-2'>
-                            {/* <label className='text-slate-600 w-[15%] mt-2'>Email : </label> */}
+                            <label className='text-slate-600 w-[15%] mt-2'>Email : </label>
                             <input type="email" placeholder="Email" className="border w-[85%] rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
                         </div>
                         <div className='flex flex-row gap-2'>
-                            {/* <label className='text-slate-600 w-[15%] mt-2'>Password : </label> */}
-                            <Input.Password  placeholder="Password" className="signin-place border w-[85%] rounded-lg p-2 outline-none placeholder:text-red-700" id="password" onChange={handleChange} />
+                            <label className='text-slate-600 w-[15%] mt-2'>Password : </label>
+                            <Input.Password placeholder="" className="border w-[85%] rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
                         </div>
 
                         <div className='flex flex-row gap-4'>
@@ -116,3 +102,5 @@ export const SignIn = () => {
         </div>
     )
 }
+
+export default MerchSignIn

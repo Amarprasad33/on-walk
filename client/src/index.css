@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+::placeholder {
+    color: black; /* Change placeholder color to black */
+}
 
 /* For modal specific styles */
 @layer components {
