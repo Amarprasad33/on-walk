@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Merchant, validateMerchant } = require("../Models/Merchant");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post("/signin", async (req, res) => {
 	try {
@@ -44,5 +45,23 @@ router.post("/signup", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+
+router.post("/getMerchant", async (req, res) => {
+	try {
+
+        const token= req.body.token;
+        const verifyToken = jwt.verify(token,'SJKRJKSRTINGDJYFBNEJDKAYJNCTKRGD');
+		const user = await Merchant.findOne({_id:verifyToken._id});
+
+		if (!user)
+			return res.status(401).send({ message: "Invalid Email or Password" });
+		
+		res.status(200).send(user);
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+});
+
 
 module.exports = router;

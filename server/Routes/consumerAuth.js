@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Consumer, validateconsumer } = require("../Models/Consumer");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.post("/signin", async (req, res) => {
 	try {
@@ -17,11 +18,12 @@ router.post("/signin", async (req, res) => {
 		if (!validPassword)
 			return res.status(401).send({ message: "Invalid Email or Password" });
 
-		const token = Consumer.generateAuthToken();
-		res.status(200).send({ data: token, message: "logged in successfully" });
+		const token = consumer.generateAuthToken();
+		res.status(200).send({data: token, message: "logged in successfully" });
         
 	} catch (error) {
 		res.status(500).send({ message: "Internal Server Error" });
+		console.log(error)
 	}
 });
 
@@ -44,5 +46,23 @@ router.post("/signup", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+
+router.post("/getConsumer", async (req, res) => {
+	try {
+
+        const token= req.body.token;
+        const verifyToken = jwt.verify(token,'SJKRJKSRTINGDJYFBNEJDKAYJNCTKRGD');
+		const user = await Consumer.findOne({_id:verifyToken._id});
+
+		if (!user)
+			return res.status(401).send({ message: "Invalid Email or Password" });
+		
+		res.status(200).send(user);
+	} catch (error) {
+		res.status(500).send({ message: "Internal Server Error" });
+	}
+});
+
 
 module.exports = router;

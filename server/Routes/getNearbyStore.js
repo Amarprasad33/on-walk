@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Product  = require("../Models/Product");
+const {Merchant}  = require("../Models/Merchant");
 
 router.post("/", async (req, res) => {
 	
@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
     radius=req.body.radius
   
     try {
-    const stores = await Product.find({
+    const stores = await Merchant.find({
       location: {
         $near: {
           $geometry: {

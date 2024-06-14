@@ -6,7 +6,6 @@ const cors = require("cors");
 const storeitem=require("./Routes/storeitem")
 const MerchantAuth=require("./Routes/merchantAuth")
 const ConsumerAuth=require("./Routes/consumerAuth")
-const getMerchant=require("./Routes/getMerchant")
 const getNearByStore=require("./Routes/getNearbyStore")
 const mailer=require("./mailer/mailer")
 
@@ -22,7 +21,6 @@ app.use(cors());
 
 
 // routes
-app.use("/api/getmerchant", getMerchant);
 app.use("/api/storeitem",storeitem)
 app.use("/api/merchant",MerchantAuth)
 app.use("/api/consumer",ConsumerAuth)

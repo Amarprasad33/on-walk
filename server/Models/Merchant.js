@@ -14,8 +14,10 @@ const merchantSchema = new mongoose.Schema({
     state:{type: String,required: true},
     pincode:{type: String,required: true},
     address:{type: String},
-    latitude:{type: String},
-    longitude:{type: String}
+    location: {
+        type: { type: String, default: 'Point' },
+        coordinates: { type: [Number], default: [0, 0] } 
+    },
 });
 
 merchantSchema.methods.generateAuthToken = function () {
@@ -39,8 +41,10 @@ const validateMerchant = (data) => {
         state: Joi.string().required().label("State"),
         pincode: Joi.string().required().label("Pincode"),
         address: Joi.string().label("Address"),
-        latitude: Joi.string().label("Latitude"),
-        longitude: Joi.string().label("Longitude"),
+        location: Joi.object({
+            type: Joi.string().valid('Point').default('Point'),
+            coordinates: Joi.array().items(Joi.number())
+        })
 	});
 	return schema.validate(data);
 };
