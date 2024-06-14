@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
 import { GoogleOutlined } from '@ant-design/icons'
 import axios from 'axios';
+import '../styles/Home.css';
 
 
 
@@ -92,12 +93,12 @@ export const SignIn = () => {
                     <form className='p-6 flex flex-col gap-4' >
 
                         <div className='flex flex-row gap-2'>
-                            <label className='text-slate-600 w-[15%] mt-2'>Email : </label>
+                            {/* <label className='text-slate-600 w-[15%] mt-2'>Email : </label> */}
                             <input type="email" placeholder="Email" className="border w-[85%] rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
                         </div>
                         <div className='flex flex-row gap-2'>
-                            <label className='text-slate-600 w-[15%] mt-2'>Password : </label>
-                            <Input.Password placeholder="" className="border w-[85%] rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
+                            {/* <label className='text-slate-600 w-[15%] mt-2'>Password : </label> */}
+                            <Input.Password  placeholder="Password" className="signin-place border w-[85%] rounded-lg p-2 outline-none placeholder:text-red-700" id="password" onChange={handleChange} />
                         </div>
 
                         <div className='flex flex-row gap-4'>

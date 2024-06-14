@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Input } from 'antd';
 import axios from 'axios';
 const { TextArea } = Input;
+import '../styles/Home.css'
 
 
 

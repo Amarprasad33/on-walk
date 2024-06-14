@@ -66,13 +66,13 @@ export default function CreateStore() {
     return (
 
         <div className='w-auto flex flex-col sm:flex-row  gap-4 ' style={{
-            background: "linear-gradient(to right, #c9d6ff, #e2e2e2)",
+            background: "linear-gradient(to right, #c9d6ff, #e2e2e2)", 'paddingBottom': '8px'
         }}>
             <div className='flex w-[100%] sm:w-[45%]'>
                 <img src={signUpImage} className='w-[100%] h-[100%]' />
             </div>
-            <div className='p-2 flex w-[100%] sm:w-[55%] flex-col'>
-                <div className='flex flex-row gap-4 mt-3 text-sm'>
+            <div className='p-2 flex w-[100%] sm:w-[45%] flex-col ml-[4rem]'>
+                <div className='flex flex-row gap-4 mt-3 text-sm' style={{'position': 'absolute', 'right': '6rem'}}>
                     <p className='mt-2 font-normal text-slate-600'>Have an account ?</p>
                     <Link to='/merch/signin'>
                         <button className='text-black font-semibold border rounded-lg bg-slate-300 pr-4 pl-4 pb-2 pt-2 text-center hover:opacity-70  hover:scale-105 transition-scale duration-300'>Sign In</button>
@@ -100,46 +100,40 @@ export default function CreateStore() {
                         wordSpacing: '-5px'
                     }}>in On Walk</span>
                 </div>
-                <form className='p-6 flex flex-col gap-4'>
-                    <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>First Name : </label>
-                        <input required={true} type="text" placeholder="First Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="firstName" onChange={handleChange} />
+                <form className='p-[0.7rem] flex flex-col gap-4' >
+                    <div className="flex gap-8">
+                        <div className='flex flex-row w-1/2'>
+                            <input required={true} type="text" placeholder="First Name" className="border w-full rounded-lg p-2 outline-none  " id="firstName" onChange={handleChange} />
+                        </div>
+                        <div className='flex flex-row w-1/2'>
+                            <input required type="text" placeholder="Last Name" className="border w-full rounded-lg p-2 outline-none  " id="lastName" onChange={handleChange} />
+                        </div>
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Last Name : </label>
-                        <input required type="text" placeholder="Last Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="lastName" onChange={handleChange} />
+                        <input required type="number" placeholder="Phone no." className="border w-full rounded-lg p-2 outline-none  " id="phone" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Phone no. : </label>
-                        <input required type="number" placeholder="Phone no." className="border w-[85%] rounded-lg p-2 outline-none  " id="phone" onChange={handleChange} />
+                        <input required type="text" placeholder="Shop Name" className="border w-full rounded-lg p-2 outline-none  " id="shopName" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Shop Name : </label>
-                        <input required type="text" placeholder="Shop Name" className="border w-[85%] rounded-lg p-2 outline-none  " id="shopName" onChange={handleChange} />
+                        <input required type="text" placeholder="City" className="border w-full rounded-lg p-2 outline-none  " id="city" onChange={handleChange} />
+                    </div>
+                    <div className="flex gap-8">
+                        <div className='flex flex-row w-1/2'>
+                            <input required type="text" placeholder="State" className="border w-full rounded-lg p-2 outline-none  " id="state" onChange={handleChange} />
+                        </div>
+                        <div className='flex flex-row w-1/2'>
+                            <input required type="text" placeholder="Pincode" className="border w-full rounded-lg p-2 outline-none  " id="pincode" onChange={handleChange} />
+                        </div>
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>City : </label>
-                        <input required type="text" placeholder="City" className="border w-[85%] rounded-lg p-2 outline-none  " id="city" onChange={handleChange} />
+                        <input required type="text" placeholder="Address" className="border w-full rounded-lg p-2 outline-none  " id="address" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>State : </label>
-                        <input required type="text" placeholder="State" className="border w-[85%] rounded-lg p-2 outline-none  " id="state" onChange={handleChange} />
+                        <input required type="email" placeholder="Email" className="border w-full rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Pincode : </label>
-                        <input required type="text" placeholder="Pincode" className="border w-[85%] rounded-lg p-2 outline-none  " id="pincode" onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Address : </label>
-                        <input required type="text" placeholder="Address" className="border w-[85%] rounded-lg p-2 outline-none  " id="address" onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Email : </label>
-                        <input required type="email" placeholder="Email" className="border w-[85%] rounded-lg p-2 outline-none  " id="email" onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-row gap-2'>
-                        <label className='text-slate-600 w-[15%] mt-2'>Password : </label>
-                        <Input.Password required placeholder="" className="border w-[85%] rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
+                        <Input.Password required placeholder="password" className="border w-full rounded-lg p-2 outline-none " id="password" onChange={handleChange} />
                     </div>
                     <div className='flex flex-row gap-4'>
                         <button onClick={handleSubmit} className='border w-[50%] mx-auto rounded-lg mt-5 bg-blue-400 pr-4 pl-4 pb-2 pt-2  hover:opacity-90  hover:scale-105 transition-scale duration-300'>

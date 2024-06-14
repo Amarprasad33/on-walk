@@ -1,7 +1,9 @@
 .home-page-main {
     margin: 0 5%;
 }
-
+.signin-place::placeholder {
+    color: red; /* Change placeholder color to black */
+}
 .home-intro-part {
     display: flex;
 }

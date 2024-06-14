@@ -146,7 +146,7 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
                     <a className='navbar-contains' href='/'>Home</a>
                     <a className='navbar-contains' href='/signin'>Sign in</a>
                     <a className='navbar-contains' href='/'>About</a>
-                    <a className='navbar-contains' href='/'>Contact</a>
+                    <a className='navbar-contains' href='#footer'>Contact</a>
                 </div>
                 <div className='input-main'>
                     <input className='search-input' type="text" placeholder='what are you looking for...' name="" id="" />
