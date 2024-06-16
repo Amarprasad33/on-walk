@@ -127,12 +127,11 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
                     <img className='website-logo-img' src="/assets/OnWalkLogo.svg" />
                     <p className='website-item'>On Walk</p>
                 </div>
-                <div className='navbar-location-icon'></div>
-                {/* <img className='navbar-location-icon' src="/assets/icons/location.svg" onClick={() => {
+                <img className='navbar-location-icon' src="/assets/icons/location.svg" onClick={() => {
                     console.log("clckeed", isModalOpened)
                     setIsModalOpened(true);
                     // console.log("clckeed", isModalOpened)
-                }} /> */}
+                }} />
                 {/* Modal for getting precise location */}
                 <div className='input-main'>
                     <input className='search-input' type="text" placeholder='Search Product...' name="" id="" />
