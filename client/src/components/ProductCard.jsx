@@ -11,7 +11,7 @@ const ProductCard = ({
     imgUrl
 }) => {
     return (
-        <div id="container" className='' style={{'zIndex': '-100'}}>
+        <div id="container" className=''>
             <div id="productImageContainer" className="w-fit h-fit border relative min-w-52 min-h-48 flex justify-center items-center">
                 <img className="w-40 h-40" src={imgUrl} alt="product image" />
                 <div className="absolute top-2 left-2 bg-blue-700 text-white px-3 py-0.5 rounded">-{discountedPrice}%</div>

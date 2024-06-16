@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import '../styles/NavbarAfterLogin.css'
-import DefaultIcon from '/assets/icons/profile-user.png'
+import DefaultIcon from '/assets/user.png'
+import DownIcon from '/assets/down.png'
+import ShoppingIcon from '/assets/shoppingBag.png'
 import { Input } from "antd";
 import { SearchOutlined } from '@ant-design/icons';
 import Modal from './Modal';
@@ -14,6 +16,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2FoaWxrcnJhaiIsImEiOiJjbHYzbjgyemQwcmtmMmpwO
 
 const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     const [isModalOpened, setIsModalOpened] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     // const [storeLocations, setStoreLocations] = useState(
     //     JSON.parse(localStorage.getItem('storeLocations')) || []
     // );
@@ -21,7 +24,7 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
 
-    const navStyle = scrolled ? { 'position': 'fixed', 'backgroundColor': '#fff' } : { 'position': 'relative' }
+    const navStyle = scrolled ? { 'position': 'fixed', 'backgroundColor': '#eef3f7' } : { 'position': 'relative' }
 
     useEffect(() => {
         const map = new mapboxgl.Map({
@@ -120,15 +123,21 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     return (
         <>
             <div className='navbar-main z-10' style={navStyle}>
-                <div className='user-profile-pic'>
-                    <img src={DefaultIcon} />
+                <div className='website-logo-main'>
+                    <img className='website-logo-img' src="/assets/OnWalkLogo.svg" />
+                    <p className='website-item'>On Walk</p>
                 </div>
-                <img className='navbar-location-icon' src="/assets/icons/location.svg" onClick={() => {
+                <div className='navbar-location-icon'></div>
+                {/* <img className='navbar-location-icon' src="/assets/icons/location.svg" onClick={() => {
                     console.log("clckeed", isModalOpened)
                     setIsModalOpened(true);
                     // console.log("clckeed", isModalOpened)
-                }} />
+                }} /> */}
                 {/* Modal for getting precise location */}
+                <div className='input-main'>
+                    <input className='search-input' type="text" placeholder='Search Product...' name="" id="" />
+                    <SearchOutlined className='search-icon' />
+                </div>
                 <Modal open={isModalOpened} onClose={() => setIsModalOpened(false)} >
                     <div className=' my-4 flex flex-col gap-3 h-[50vh]'>
                         <div className='text-2xl font-medium text-center font-black text-gray-800'>Set your precise location</div>
@@ -143,18 +152,19 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
                     <button className="btn btn-danger ml-auto" onClick={() => setIsModalOpened(false)}>Close</button>
                 </Modal>
                 <div className='navbar-contains-main'>
-                    <a className='navbar-contains' href='/'>Home</a>
-                    <a className='navbar-contains' href='/signin'>Sign in</a>
-                    <a className='navbar-contains' href='/'>About</a>
-                    <a className='navbar-contains' href='#footer'>Contact</a>
-                </div>
-                <div className='input-main'>
-                    <input className='search-input' type="text" placeholder='what are you looking for...' name="" id="" />
-                    <SearchOutlined className='search-icon' />
+                    {isLogin !== true ? <a className='navbar-contains' href='/signin'>SignIn</a> : (
+                        <div className='user-main'>
+                            <img className='user-img' src={DefaultIcon} />
+                            <p className='user-name'>Shubham</p>
+                            <img className='user-down-icon' src={DownIcon} />
+                        </div>
+                    )
+                    }
+                    <a className='navbar-contains' href='/'>About Us</a>
                 </div>
                 {!isMerchant && <div className='more-options'>
-                    <img className='cursor-pointer' src='/assets/icons/wishlist.svg' />
-                    <img className='cursor-pointer' src='/assets/icons/cart.svg' />
+                    <img className='shop-icon' src={ShoppingIcon} />
+                    <p className='save-item'>Saved Items</p>
                 </div>}
             </div>
             <hr />

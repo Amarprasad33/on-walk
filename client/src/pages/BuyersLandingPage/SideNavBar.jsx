@@ -36,7 +36,6 @@ const SideNavBar = () => {
                     <h1 className='points'>Health & Beauty</h1>
                 </div>
             </div>
-            <div className='vertical-line' ></div>
         </div>
     )
 }

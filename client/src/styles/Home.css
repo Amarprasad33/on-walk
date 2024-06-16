@@ -1,23 +1,35 @@
 .home-page-main {
+    margin: 0 0%;
+    background-color: #eef3f7;
+}
+
+.home-page-parent {
     margin: 0 5%;
 }
+
 .signin-place::placeholder {
-    color: red; /* Change placeholder color to black */
+    color: red;
+    /* Change placeholder color to black */
 }
+
 .home-intro-part {
     display: flex;
+}
+
+
+.sidebar-main {
+    display: flex;
+    gap: 1.8vw;
+    background-color: white;
+    padding: 1vw 3vw;
+    margin-top: 1.2vw;
+
 }
 
 .sidebar-parent {
     display: flex;
     flex-direction: column;
     gap: 1vw;
-    margin-top: 3vw;
-}
-
-.sidebar-main {
-    display: flex;
-    gap: 1.8vw;
 }
 
 .points-with-subpoints {
