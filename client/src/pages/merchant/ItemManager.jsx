@@ -1,8 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NavbarAfterLogin from "../../components/NavbarAfterLogin";
+import mapboxgl from 'mapbox-gl';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Grid } from "antd";
+import { useNavigate } from "react-router-dom";
+
+// Registration of components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function ItemManager() {
+    const mapContainerRef = useRef(null);
+    const mapRef = useRef(null);
     let [arr, setArr] = useState([]);
+    const [yourLoc, setYourLoc] = useState({});
+    const navigate = useNavigate();
+    const [isStoreLocated, setStoreLocation] = useState(false); // Upon api call, if you get the store coordinates, make it true.
+
+    /* Chart Configurations */
+    const data = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+    };
+    
+    const options = {
+        indexAxis: 'y',
+        scales: {
+            x: {
+                beginAtZero: true,
+                grid: {
+                    display: false,
+                },
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+            },
+        },
+    };
+    /* Chart Configurations */
+
     function addItems(){
         let newArr = [...arr];
         for(let i = 1; i <= 100; i++){
@@ -13,11 +59,101 @@ export default function ItemManager() {
     useEffect(() => {
         addItems();
 
+        const map = new mapboxgl.Map({
+            container: mapContainerRef.current,
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [85.82013402225823, 20.29264639080795],
+            zoom: 9,
+        });
+
+        mapRef.current = map;
+
+        return () => map.remove();
+        
     }, []);
+
+    const saveYourLocation = async () => {
+        await navigator.geolocation.getCurrentPosition(
+            (position) => {
+                console.log('position', position)
+                const { latitude, longitude } = position.coords;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                if (isNaN(latitude) || isNaN(longitude)) {
+                    console.error('Invalid coordinates:', latitude, longitude);
+                    return;
+                }
+
+                const loc = {
+                    name: 'you',
+                    longitude: parseFloat(longitude),
+                    latitude: parseFloat(latitude)
+                }
+                setYourLoc(loc);
+            },
+            (error) => {
+                console.error('Error getting location:', error.message);
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        console.error("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        console.error("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        console.error("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        console.error("An unknown error occurred.");
+                        break;
+                }
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    const locateOnMap = async () => {
+        // checkLoc();
+        await saveYourLocation();
+        console.log('yourLOc', yourLoc)
+        if (yourLoc) {
+            mapRef.current.flyTo({
+                center: [yourLoc.longitude, yourLoc.latitude],
+                zoom: 14,
+            });
+            new mapboxgl.Popup()
+                .setLngLat([yourLoc.longitude, yourLoc.latitude])
+                .setHTML(`<p>${yourLoc.name}</p>`)
+                .addTo(mapRef.current);
+        } else {
+            alert('Something went wrong!!');
+        }
+    }
+
+
     return (
-        <div id="main-landing-page" className="relative w-full flex flex-col h-screen  border border-blue-600">
+        <div id="main-landing-page" className="relative w-full flex flex-col ">
             <NavbarAfterLogin />
-            <div className="flex flex-col gap-6 items-center text-center max-h-[88vh] overflow-y-scroll" style={{'position': 'relative'}} >
+
+            <div id="loc-&-stats" className="flex mt-5 ml-8">
+                <div className=' my-4 flex flex-col gap-3 h-[60vh] w-[50vw]'>
+                    <div className="map-container h-[18rem]">
+                        <div ref={mapContainerRef} className="map h-[18rem] mt-12" />
+                    </div>
+
+                    {isStoreLocated && <button className="btn text-white bg-blue-500 mx-auto mt-10" onClick={locateOnMap}>Locate your store on Map</button>}
+
+                </div>
+
+                <div id="graph-container" style={{'height': '400px', 'width': '600px', 'marginLeft': '40px'}}>
+                    <Bar data={data} options={options} height={400} width={600} />
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-6 items-center text-center max-h-[88vh] overflow-y-scroll w-[80%] self-center rounded-md " style={{'position': 'relative'}} >
                 {arr.map((item) => (
                     <div key={item} id={`item-card-${item}`} className="w-[75%] p-3  rounded-lg shadow-xl">
                         <div className="flex gap-10 items-center">
@@ -43,8 +179,8 @@ export default function ItemManager() {
                     </div>
                 ))}
             </div>
-            <div id="action-btns" className="mt-1 mb-2 flex gap-4 items-center self-center">
-                <button className="p-2 w-[18rem] bg-[#2238FF] rounded-md text-slate-100 hover:scale-90 transition-all duration-300" style={{'background': 'linear-gradient(28deg, rgba(29, 209, 221, 1) 0%, rgba(37, 178, 187, 1) 20%, rgba(34, 56, 255, 1) 42%, rgba(137, 52, 222, 1) 69%, rgba(211, 25, 214, 1) 100%)'}}>
+            <div id="action-btns" className="mt-4 mb-4 flex gap-4 items-center self-center" style={{'position': 'fixed', 'bottom': '0px'}}>
+                <button className="p-2 w-[18rem] bg-[#2238FF] rounded-md text-slate-100 hover:scale-90 transition-all duration-300" onClick={() => navigate('/merch/additem')} >
                     Add a new item
                 </button>
                 <button className="flex gap-[10px] items-center font-medium text-[1.2rem] border border-black py-[4px] px-[8px] rounded-md hover:scale-110 transition-all duration-200" >
