@@ -15,9 +15,8 @@ const consumerSchema = new mongoose.Schema({
     pincode: {type: String},
 	location: {
         type: { type: String, default: 'Point' },
-        coordinates: { type: [Number], default: [0, 0] } // Default coordinates
+        coordinates: { type: [Number], default: [0, 0] } 
     },
-
 });
 
 consumerSchema.methods.generateAuthToken = function () {
