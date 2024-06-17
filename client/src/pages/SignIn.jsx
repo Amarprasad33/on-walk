@@ -31,7 +31,7 @@ export const SignIn = () => {
         try {
             const url = `${process.env.API_URL}/api/consumer/signin`;
             const { data: res } = await axios.post(url, formData);
-            localStorage.setItem("token", res.data);
+            localStorage.setItem("consumerToken", res.data);
             navigate("/");
         } catch (error) {
             if (
@@ -98,7 +98,7 @@ export const SignIn = () => {
                         </div>
                         <div className='flex flex-row gap-2'>
                             {/* <label className='text-slate-600 w-[15%] mt-2'>Password : </label> */}
-                            <Input.Password  placeholder="Password" className="signin-place border w-[85%] rounded-lg p-2 outline-none placeholder:text-red-700" id="password" onChange={handleChange} />
+                            <Input.Password placeholder="Password" className="signin-place border w-[85%] rounded-lg p-2 outline-none placeholder:text-red-700" id="password" onChange={handleChange} />
                         </div>
 
                         <div className='flex flex-row gap-4'>

@@ -8,7 +8,7 @@ const Testimonials = () => {
                     <img src='/assets/testimonial/store.svg' className='testimonal-icon' />
                 </div>
                 <div className='testimonial-content'>
-                    <div className='text-[1.3vw] text-center font-semibold text-violet-500'>FREE AND FAST DELIVERY</div>
+                    <div className='text-[1.3vw] text-center font-semibold text-violet-500'>CREATE YOUR STORE</div>
                 </div>
             </div>
             <div className='testimonial-parent'>
@@ -16,7 +16,7 @@ const Testimonials = () => {
                     <img src='/assets/testimonial/sell.svg' className='testimonal-icon' />
                 </div>
                 <div className='testimonial-content'>
-                    <div className='text-[1.3vw] text-center font-semibold text-sky-500'>FREE AND FAST DELIVERY</div>
+                    <div className='text-[1.3vw] text-center font-semibold text-sky-500'>SELL YOUR PRODUCT</div>
                 </div>
             </div>
             <div className='testimonial-parent'>
@@ -24,7 +24,7 @@ const Testimonials = () => {
                     <img src='/assets/testimonial/growth.svg' className='testimonal-icon' />
                 </div>
                 <div className='testimonial-content'>
-                    <div className='text-[1.3vw] text-center font-semibold text-amber-400'>FREE AND FAST DELIVERY</div>
+                    <div className='text-[1.3vw] text-center font-semibold text-amber-400'>GROW YOUR BUSINESS</div>
                 </div>
             </div>
             <div className='testimonial-parent'>
@@ -32,7 +32,7 @@ const Testimonials = () => {
                     <img src='/assets/testimonial/heart.svg' className='testimonal-icon' />
                 </div>
                 <div className='testimonial-content'>
-                    <div className='text-[1.3vw] text-center font-semibold text-pink-500'>FREE AND FAST DELIVERY</div>
+                    <div className='text-[1.3vw] text-center font-semibold text-pink-500'>WE CAN HELP</div>
                 </div>
             </div>
         </div>

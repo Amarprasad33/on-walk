@@ -9,6 +9,7 @@ import Modal from './Modal';
 const { Search } = Input;
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { useNavigate } from 'react-router-dom'
 
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FoaWxrcnJhaiIsImEiOiJjbHYzbjgyemQwcmtmMmpwOHd0OTg5eW9sIn0.Dtuo5qqHCxv_01nK7YHVkg';
@@ -20,6 +21,7 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     // const [storeLocations, setStoreLocations] = useState(
     //     JSON.parse(localStorage.getItem('storeLocations')) || []
     // );
+    const navigate = useNavigate();
     const [yourLoc, setYourLoc] = useState({});
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
@@ -123,7 +125,7 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     return (
         <>
             <div className='navbar-main z-10' style={navStyle}>
-                <div className='website-logo-main'>
+                <div onClick={() => navigate('/')} className='website-logo-main'>
                     <img className='website-logo-img' src="/assets/OnWalkLogo.svg" />
                     <p className='website-item'>On Walk</p>
                 </div>

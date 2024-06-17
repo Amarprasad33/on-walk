@@ -13,6 +13,8 @@ import Confirmation from './pages/merchant/Confirmation';
 import ItemManager from './pages/merchant/ItemManager';
 import ProductView from './pages/user/ProductView';
 import MerchSignIn from './pages/MerchSignIn';
+import NearbyStores from './components/NearbyStores';
+import AboutShop from './components/AboutShop';
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/nearby-store' element={<NearbyStores />} />
+          <Route path='/about' element={<AboutShop />} />
           <Route path='/merch/signin' element={<MerchSignIn />} />
           <Route path='/merch/signup' element={<CreateStore />} />
           <Route path='/merch' element={<MerchantLanding />} />

@@ -5,6 +5,8 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Grid } from "antd";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import ImageViewer from "../../components/ImageViewer";
 
 // Registration of components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -12,25 +14,39 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default function ItemManager() {
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
-    let [arr, setArr] = useState([]);
+    let [arr, setArr] = useState([0, 1, 2, 3, 4]);
     const [yourLoc, setYourLoc] = useState({});
     const navigate = useNavigate();
-    const [isStoreLocated, setStoreLocation] = useState(false); // Upon api call, if you get the store coordinates, make it true.
+    const [isStoreLocated, setStoreLocation] = useState(true); // Upon api call, if you get the store coordinates, make it true.
+    const [merchantData, setMerchantData] = useState();
+
+
+    const fetchMerchant = async () => {
+        try {
+            const token = localStorage.getItem("merchantToken");
+            const url = "http://localhost:8010/api/merchant/getMerchant";
+            const { data: res } = await axios.post(url, { token: token });
+            setMerchantData(res);
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
 
     /* Chart Configurations */
     const data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
-          {
-            label: 'Dataset 1',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-          },
+            {
+                label: 'Dataset 1',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            },
         ],
     };
-    
+
     const options = {
         indexAxis: 'y',
         scales: {
@@ -49,16 +65,9 @@ export default function ItemManager() {
     };
     /* Chart Configurations */
 
-    function addItems(){
-        let newArr = [...arr];
-        for(let i = 1; i <= 100; i++){
-            newArr.push(i);
-        }
-        setArr(newArr);
-    }
-    useEffect(() => {
-        addItems();
 
+    useEffect(() => {
+        fetchMerchant();
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
             style: 'mapbox://styles/mapbox/streets-v11',
@@ -69,7 +78,7 @@ export default function ItemManager() {
         mapRef.current = map;
 
         return () => map.remove();
-        
+
     }, []);
 
     const saveYourLocation = async () => {
@@ -84,9 +93,9 @@ export default function ItemManager() {
                 }
 
                 const loc = {
-                    name: 'you',
-                    longitude: parseFloat(longitude),
-                    latitude: parseFloat(latitude)
+                    name: merchantData.shopName,
+                    longitude: parseFloat(merchantData.location.coordinates[0]),
+                    latitude: parseFloat(merchantData.location.coordinates[1])
                 }
                 setYourLoc(loc);
             },
@@ -148,16 +157,18 @@ export default function ItemManager() {
 
                 </div>
 
-                <div id="graph-container" style={{'height': '400px', 'width': '600px', 'marginLeft': '40px'}}>
+                <div id="graph-container" style={{ 'height': '400px', 'width': '600px', 'marginLeft': '40px' }}>
                     <Bar data={data} options={options} height={400} width={600} />
                 </div>
             </div>
 
-            <div className="flex flex-col gap-6 items-center text-center max-h-[88vh] overflow-y-scroll w-[80%] self-center rounded-md " style={{'position': 'relative'}} >
-                {arr.map((item) => (
+            <div className="flex flex-col gap-6 items-center text-center max-h-[88vh] overflow-y-scroll w-[80%] self-center rounded-md " style={{ 'position': 'relative' }} >
+                {arr.map((item, idx) => (
                     <div key={item} id={`item-card-${item}`} className="w-[75%] p-3  rounded-lg shadow-xl">
                         <div className="flex gap-10 items-center">
-                            <div id="img-container" className="w-[20%] h-[10rem] bg-center bg-cover bg-[url('/assets/no-preview.png')]"></div>
+                            <div className="w-[10rem] h-[8rem] bg-center bg-cover overflow-hidden">
+                                <ImageViewer index={idx} />
+                            </div>
                             <div id="item-details" className="flex flex-col gap-4 items-baseline">
                                 <div>Item name: </div>
                                 <div>Catetogy: </div>
@@ -179,7 +190,7 @@ export default function ItemManager() {
                     </div>
                 ))}
             </div>
-            <div id="action-btns" className="mt-4 mb-4 flex gap-4 items-center self-center" style={{'position': 'fixed', 'bottom': '0px'}}>
+            <div id="action-btns" className="mt-4 mb-4 flex gap-4 items-center self-center" style={{ 'position': 'fixed', 'bottom': '0px' }}>
                 <button className="p-2 w-[18rem] bg-[#2238FF] rounded-md text-slate-100 hover:scale-90 transition-all duration-300" onClick={() => navigate('/merch/additem')} >
                     Add a new item
                 </button>
@@ -187,7 +198,7 @@ export default function ItemManager() {
                     <span>Save</span>
                 </button>
             </div>
-            
+
         </div>
     )
 }

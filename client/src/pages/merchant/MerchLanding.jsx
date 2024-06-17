@@ -1,12 +1,33 @@
 import { Link } from "react-router-dom";
 import NavbarAfterLogin from "../../components/NavbarAfterLogin";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function MerchantLanding() {
+
+  const [data, setData] = useState();
+
+  const fetchMerchant = async () => {
+    try {
+      const token = localStorage.getItem("merchantToken");
+      const url = "http://localhost:8010/api/merchant/getMerchant";
+      const { data: res } = await axios.post(url, { token: token });
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  useEffect(() => {
+    fetchMerchant();
+  }, []);
+  console.log(data);
   return (
     <main className="flex flex-col items-center">
-      <div style={{ marginBottom: "2vw" }}>
+      {/* <div style={{ marginBottom: "2vw" }}>
         <NavbarAfterLogin isMerchant={true} />
-      </div>
+      </div> */}
       <div id="main-landing-page" className="relative w-full h-screen">
         <div id="bg" className="absolute h-screen w-full object-cover bg-center -z-10 blur-[1px] -top-8 bg-[url('/assets/Group-background-img.png')]" >
           {/* <img src="/Group-background-img.png" alt="" /> */}
@@ -19,7 +40,7 @@ export default function MerchantLanding() {
           <div className="text-2xl w-[50%] mt-12">
             Join our local store discovery app and connect with nearby customers looking for your products!
           </div>
-          <Link to='/merch/manage/'>
+          <Link to='/merch/manage/items'>
             <button className="p-6 px-36 bg-[#2238FF] rounded-md text-slate-100 mt-24" >Get Started</button>
           </Link>
         </div>

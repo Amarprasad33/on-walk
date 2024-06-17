@@ -26,7 +26,7 @@ const MerchSignIn = () => {
         try {
             const url = `${process.env.API_URL}/api/merchant/signin`;
             const { data: res } = await axios.post(url, formData);
-            localStorage.setItem("token", res.data);
+            localStorage.setItem("merchantToken", res.data);
             navigate('/merch');
         } catch (error) {
             if (

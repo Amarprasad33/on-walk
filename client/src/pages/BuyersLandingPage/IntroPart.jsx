@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 import Modal from '../../components/Modal';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 
 
@@ -223,7 +223,16 @@ const IntroPart = ({ userLocation, directionsData, setDirectionData }) => {
                 <img src='/assets/banner1.jpg' />
             </div>
             <div className='intro-more'>
-                <div className='flex flex-col w-[100%] h-[50%] cursor-pointer hover:scale-105 transition-scale duration-300'>
+                <div onClick={() => navigate("/nearby-store",
+                    // {
+                    //     state: {
+                    //         setDirectionData,
+                    //         directionsData,
+                    //         userLocation
+                    //     }
+                    // }
+                )} className='flex flex-col w-[100%] h-[50%] cursor-pointer hover:scale-105 transition-scale duration-300'>
+
                     <p className='heading-text'>Nearby Stores</p>
                     <img src='/assets/searchNearbyStore.jpg' />
                 </div>
