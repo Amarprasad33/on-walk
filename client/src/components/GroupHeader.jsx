@@ -7,12 +7,6 @@ export default function GroupHeader({
 }) {
     return (
         <div id="container" className="flex flex-col gap-2">
-            <div id="title" className="flex gap-2 items-center">
-                <div className="w-4 mr-[5px] h-8 rounded bg-blue-700"></div>
-                <div className="text-base font-medium text-blue-700">
-                    {groupTitle}
-                </div>
-            </div>
             <div id="header" className="flex flex-row items-center">
                 <div className="text-2xl font-medium mb-6">{groupInfoHeader}</div>
                 {/* {

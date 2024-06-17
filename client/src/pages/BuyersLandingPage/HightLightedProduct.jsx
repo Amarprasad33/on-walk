@@ -10,13 +10,13 @@ const HightLightedProduct = ({ content, saleTimeLeft, productImg }) => {
                     <div className='highlighted-product-time-sec'>
                         <div className='time-format'>
                             <div className='time-text-number'>23</div>
-                            <div className='time-text'>Hours</div>
+                            <div className='time-text'>Days</div>
                         </div>
                     </div>
                     <div className='highlighted-product-time-sec'>
                         <div className='time-format'>
                             <div className='time-text-number'>23</div>
-                            <div className='time-text'>Days</div>
+                            <div className='time-text'>Hours</div>
                         </div>
                     </div>
                     <div className='highlighted-product-time-sec'>

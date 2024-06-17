@@ -24,7 +24,7 @@ const NavbarAfterLogin = ({ scrolled, setUserLocation, isMerchant }) => {
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
 
-    const navStyle = scrolled ? { 'position': 'fixed', 'backgroundColor': '#eef3f7' } : { 'position': 'relative' }
+    const navStyle = scrolled ? { 'position': 'fixed', 'backgroundColor': 'white' } : { 'position': 'relative' }
 
     useEffect(() => {
         const map = new mapboxgl.Map({

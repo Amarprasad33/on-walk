@@ -49,12 +49,14 @@ const Home = () => {
             <IntroPart userLocation={userLocation} directionData={directionData} setDirectionData={setDirectionData} />
           </div>
           <div className='home-flash-sales'>
-            <GroupHeader groupTitle="Today's" groupInfoHeader="Discount's upto 40%" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+            <div className='flex flex-row gap-10'>
+              <GroupHeader groupTitle="Today's" groupInfoHeader="Deal of the Day" sideNavigation={true} actionBtn={false} actionBtnText={''} />
+              <div className="vertical-line"></div>
+              <CountdownTimer targetDate="2024-06-20T10:00:00" />
+              <p className='home-flash-sale-all'>View All Deals</p>
+            </div>
             <div className='productList'>
-              <div className='flex flex-col gap-2'>
-                <ProductCardSmall id={23} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-                <button>Details</button>
-              </div>
+              <ProductCardSmall id={23} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
               <ProductCardSmall id={24} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
               <ProductCardSmall id={25} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
               <ProductCardSmall id={26} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
@@ -63,41 +65,42 @@ const Home = () => {
               <ProductCardSmall id={29} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
               <ProductCardSmall id={30} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPercent={30} discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
             </div>
-            <button className='view-all-btn'>View All Products</button>
-            <hr style={{ marginBottom: '1vw' }} />
           </div>
           <div className='categories'>
             <GroupHeader groupTitle="Categories" groupInfoHeader="Browse By Category" sideNavigation={true} actionBtn={false} actionBtnText={''} />
             <div className='categories-list'>
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
-              <Categories imgUrl="assets/icons/CellPhone.svg" categoryName="Phones" />
+              <Categories imgUrl="assets/categoriesIcons/clothing.svg" categoryName="Clothing" />
+              <Categories imgUrl="assets/categoriesIcons/Electronics.svg" categoryName="Electronics" />
+              <Categories imgUrl="assets/categoriesIcons/home.svg" categoryName="Home Decor" />
+              <Categories imgUrl="assets/categoriesIcons/beauty.svg" categoryName="Beauty" />
+              <Categories imgUrl="assets/categoriesIcons/sport.svg" categoryName="Sports" />
+              <Categories imgUrl="assets/categoriesIcons/stationery.svg" categoryName="Stationery" />
+              <Categories imgUrl="assets/categoriesIcons/grocery.svg" categoryName="Grocery" />
+              <Categories imgUrl="assets/categoriesIcons/furniture.svg" categoryName="Furniture" />
+              <Categories imgUrl="assets/categoriesIcons/automotive.svg" categoryName="Automotive" />
+              <Categories imgUrl="assets/categoriesIcons/fitness.svg" categoryName="Fitness & Gym" />
+              <Categories imgUrl="assets/categoriesIcons/books.svg" categoryName="Books & Literature" />
+              <Categories imgUrl="assets/categoriesIcons/music.svg" categoryName="Music & Entertainment" />
+              <Categories imgUrl="assets/categoriesIcons/health.svg" categoryName="Health & Wellness" />
+              <Categories imgUrl="assets/categoriesIcons/pets.svg" categoryName=" Pets & Supplies" />
+              <Categories imgUrl="assets/categoriesIcons/travel.svg" categoryName="Travel & Tourism" />
             </div>
             <hr style={{ marginBottom: '1vw' }} />
           </div>
           <div className='most-search-products'>
             <div className='most-search-products-heading'>
               <GroupHeader groupTitle="This Month" groupInfoHeader="Most Searched Products" sideNavigation={true} actionBtn={false} actionBtnText={''} />
-              <button className='search-products-view-all-btn'>View All</button>
+              <p className='home-flash-sale-all'>View All Deals</p>
             </div>
             <div className='most-search-products-list'>
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
-              <ProductCard imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={23} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={24} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={25} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={26} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={27} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={28} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={29} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
+              <ProductCard id={30} imgUrl={'https://armafperfume.com/cdn/shop/products/TCB_5155_1024x1024.jpg?v=1641559687'} productName="Armaf Club De Nuit Eau De Parfum" discountedPrice={60} actualPrice={90} rating={4} totalReviews={89} />
             </div>
           </div>
           <div className='single-product'>
@@ -139,5 +142,54 @@ const Home = () => {
 
   )
 }
+
+const CountdownTimer = ({ targetDate }) => {
+  const calculateTimeLeft = () => {
+    const difference = +new Date(targetDate) - +new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        // days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: " : " + Math.floor((difference / 1000 / 60) % 60),
+        seconds: " : " + Math.floor((difference / 1000) % 60)
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [timeLeft]);
+
+  const timerComponents = [];
+
+  Object.keys(timeLeft).forEach((interval) => {
+    if (!timeLeft[interval]) {
+      return;
+    }
+
+    timerComponents.push(
+      <span className='timmer' key={interval}>
+        {timeLeft[interval]}{" "}
+      </span>
+    );
+  });
+  timerComponents.push(<span className='timmer'>Left</span>)
+
+  return (
+    <div className='mt-[0.1vw]'>
+      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+    </div>
+  );
+};
 
 export default Home
