@@ -20,6 +20,8 @@ const merchantSchema = new mongoose.Schema({
     },
 });
 
+merchantSchema.index({ location: '2dsphere' });
+
 merchantSchema.methods.generateAuthToken = function () {
 	const token = jwt.sign({ _id: this._id }, 'SJKRJKSRTINGDJYFBNEJDKAYJNCTKRGD', {
 		expiresIn: "7d",
