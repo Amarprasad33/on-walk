@@ -2,7 +2,28 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    padding: 0.5vw 5vw;
+    padding: 0.5vw 1vw 0.5vw 5vw;
+    background-color: #eef3f7;
+    gap: 2vw;
+}
+
+.website-logo-main {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.website-logo-img {
+    width: 3vw;
+    height: 3vw;
+}
+
+.website-item {
+    font-size: 1.2vw;
+    font-weight: 600;
+    margin-top: 0.5vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
 }
 
 .user-profile-pic {
@@ -10,13 +31,39 @@
 }
 
 .navbar-location-icon {
-    margin-left: 8vw;
+    margin-left: 1vw;
+}
+
+.user-main {
+    display: flex;
+    gap: 1vw;
+    margin-top: -0.4vw;
+    cursor: pointer;
+}
+
+.user-img {
+    width: 2.4vw;
+    height: 2.4vw;
+}
+
+.user-name {
+    margin-top: 0.5vw;
+    font-weight: 600;
+    font-size: 1.2vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.user-down-icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 1vw;
+    margin-left: -0.4vw;
 }
 
 .navbar-contains-main {
     display: flex;
-    margin-left: 4vw;
-    gap: 4vw;
+    gap: 2.5vw;
+    margin-left: 2vw;
     margin-top: 0.6vw;
 }
 
@@ -24,6 +71,8 @@
     text-decoration: none;
     color: black;
     font-size: 1.2vw;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .navbar-contains:hover {
@@ -31,19 +80,20 @@
 }
 
 .input-main {
-    width: 20vw;
+    width: 30vw;
     height: 2.5vw;
     margin-top: 0.5vw;
-    margin-left: 8vw;
-    background-color: #F5F5F5;
-    border-radius: 0.3vw;
+    background-color: white;
+    border: 1px solid #ebecee;
+    border-radius: 1.5vw;
+    margin-left: 1vw;
 }
 
 .search-input {
-    margin-left: 1vw;
+    margin-left: 1.5vw;
     margin-top: 0.4vw;
     width: 80%;
-    background-color: #F5F5F5;
+    background-color: white;
 }
 
 .search-input:focus {
@@ -53,13 +103,32 @@
 .search-icon {
     cursor: pointer;
     position: absolute;
-    margin-top: 0.5vw;
-    margin-left: 0.6vw;
-    font-size: 1.35vw;
+    margin-top: 0.6vw;
+    color: #a9a9a9;
+    margin-left: 2vw;
+    font-size: 1.2vw;
 }
 
 .more-options {
     display: flex;
-    margin-left: 4vw;
-    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+    margin-left: 6vw;
+}
+
+.save-item {
+    font-size: 1.2vw;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+}
+
+.save-item:hover {
+    text-decoration: underline blue;
+}
+
+.shop-icon {
+    width: 25px;
+    height: 25px;
 }
