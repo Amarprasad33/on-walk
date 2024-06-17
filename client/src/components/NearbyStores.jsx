@@ -11,11 +11,14 @@ const NearbyStores = () => {
     const [scrolled, setScrolled] = useState(false);
     // const [userLocation, setUserLocation] = useState({});
     const [yourLoc, setYourLoc] = useState({});
+    const [youAsShop, setYouAsShop] = useState({});
     const location = useLocation();
     const setDirectionData = location?.state?.setDirectionData;
     const directionsData = location?.state?.directionsData;
     const userLocation = location?.state?.userLocation;
-    console.log(setDirectionData);
+    console.log("dire", setDirectionData);
+    console.log("direcino", setDirectionData);
+    console.log("userLoac", setDirectionData);
     const mapContainerRef = useRef(null);
     const mapRef = useRef(null);
     const navigate = useNavigate();
@@ -46,45 +49,75 @@ const NearbyStores = () => {
             "longitude": "85.86186249325304"
         }
     ]
-    if ((userLocation.longitude && userLocation.latitude)) {
-        dummyStoresData.push(userLocation);
-    }
+    // if ((userLocation.longitude && userLocation.latitude)) {
+    //     dummyStoresData.push(userLocation);
+    // }
     const dummyShop = [
         {
-            shopName: "Fitness Zone",
+            shopName: "Big Bazaar",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         },
         {
             shopName: "Fitness Zone",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         },
         {
             shopName: "Fitness Zone",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         },
         {
             shopName: "Fitness Zone",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         },
         {
             shopName: "Fitness Zone",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         },
         {
             shopName: "Fitness Zone",
             address: "246 Birch Way, Seattle, WA 98101",
             description: "A fitness center equipped with state-of-the-art gym equipment, offering group classes, personal training, and wellness programs to help you achieve your health goals.",
-            shopPic: "/assets/shop.svg"
+            shopPic: "/assets/shop.svg",
+            shopObj: {
+                "shopName": "Big Bazaar",
+                "latitude": "20.28965644699696",
+                "longitude": "85.81441249325307"
+            }
         }
     ]
     useEffect(() => {
@@ -113,7 +146,7 @@ const NearbyStores = () => {
                     latitude: parseFloat(latitude)
                 }
 
-                setInitialReqData(apiData);
+                // setInitialReqData(apiData);
 
             },
             (error) => {
@@ -145,22 +178,6 @@ const NearbyStores = () => {
     }, []);
 
     const getNearbyStores = async () => {
-        // try {
-        //     const url = `${process.env.API_URL}/api/getnearbystore`;
-        //     const res  = await axios.post(url, initialReqData);
-        //     localStorage.setItem("token", res.data);
-        //     console.log("res_nearbyStore", res);
-        //     // window.location = "/student";
-        // } catch (error) {
-        //     if (
-        //         error.response &&
-        //         error.response.status >= 400 &&
-        //         error.response.status <= 500
-        //     ) {
-        //         setError(error.response.data.message);
-        //     }
-        //     console.log('err', error)
-        // }
         dummyStoresData.map((store) => {
             mapRef.current.flyTo({
                 center: [store.longitude, store.latitude],
@@ -174,72 +191,19 @@ const NearbyStores = () => {
             popup.getElement().addEventListener('click', function (event) {
                 // console.log('Popup content clicked!', event);
                 const storeName = event.target.innerHTML || event.target.textContent;
-                setCurrStoreName(storeName);
+                // setCurrStoreName(storeName);
                 console.log('Store name:', storeName);
                 event.stopPropagation();
-                if (storeName != '×') {
-                    setIsModalOpened(true);
-                }
+                // if (storeName != '×') {
+                //     setIsModalOpened(true);
+                // }
                 // findShortestPath('SS The Mart', 'Big bazar')
             });
         })
     }
 
-    const findPath = async () => {
-        let startStoreName = 'You';
-        let endStoreName = currStoreName;
-        console.log("st", startStoreName);
-        console.log("end", endStoreName);
-        console.log("dummy", dummyStoresData);
+   
 
-        setDirectionData(dummyStoresData);
-
-
-        const startStore = dummyStoresData.find((store) => store.shopName.toLowerCase() === startStoreName.toLowerCase());
-        const endStore = dummyStoresData.find((store) => store.shopName.toLowerCase() === endStoreName.toLowerCase());
-
-        console.log("st--", startStore);
-        console.log("end--", endStore);
-        if (!startStore || !endStore) {
-            console.log('Start or end store not found');
-            return [];
-        }
-
-        const directionsResponse = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/driving/${startStore.longitude},${startStore.latitude};${endStore.longitude},${endStore.latitude}?geometries=geojson&access_token=${mapboxgl.accessToken}`
-        );
-
-        const directionsData = await directionsResponse.json();
-        const route = directionsData.routes[0].geometry;
-
-        // Draw the route on the map
-        mapRef.current.addLayer({
-            id: 'route',
-            type: 'line',
-            source: {
-                type: 'geojson',
-                data: {
-                    type: 'Feature',
-                    geometry: route,
-                },
-            },
-            layout: {
-                'line-join': 'round',
-                'line-cap': 'round',
-            },
-            paint: {
-                'line-color': '#3887be',
-                'line-width': 5,
-                'line-opacity': 0.75,
-            },
-        });
-        // setIsModalOpened(false);
-
-
-        return [startStore, endStore];
-    }
-
-    useCallback(findPath,)
 
     const saveYourLocation = async () => {
         navigator.geolocation.getCurrentPosition(
@@ -264,6 +228,7 @@ const NearbyStores = () => {
                     latitude: parseFloat(latitude)
                 }
                 setYourLoc(loc);
+                setYouAsShop(youAsdata);
                 //   setStoreLocations([...storeLocations, store]);
                 //     localStorage.setItem('yourLocation', JSON.stringify([...storeLocations, store]));
             },
@@ -320,12 +285,13 @@ const NearbyStores = () => {
                     <div className="map h-[20rem]" />
                 </div>
                 <button className="btn text-white bg-blue-500 mx-auto" onClick={locateOnMap} >Get my current location</button>
+                <button className="btn text-white bg-blue-500 mx-auto" onClick={getNearbyStores} >Get my nearby stores</button>
                 {(yourLoc.longitude && yourLoc.latitude) && <div className='text-center'>We got your location! Thank you.</div>}
             </div>
             <div className='w-[70%] h-auto m-auto'>
                 <div>
                     {dummyShop.map((shop) => (
-                        <div onClick={() => navigate("/about")} className=' cursor-pointer p-2'>
+                        <div key={shop.shopName} onClick={() => navigate("/about", {state: {youAsStore: youAsShop, destStore: shop.shopObj  }})} className=' cursor-pointer p-2'>
                             <div className='flex flex-row gap-4 bg-white rounded-lg' >
                                 <div className='w-[18%] p-2 rounded-lg overflow-hidden'>
                                     <img src={shop.shopPic} />
